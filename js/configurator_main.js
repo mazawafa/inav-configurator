@@ -242,6 +242,9 @@ $(function() {
                             require('./../tabs/search');
                             TABS.search.initialize(content_ready);
                             break;
+                        case 'osd_and_sensors':
+                            import('./../tabs/osd_and_sensors').then(() => TABS.osd_and_sensors.initialize(content_ready));
+                            break;
                         default:
                             console.log('Tab not found:' + tab);
                     }

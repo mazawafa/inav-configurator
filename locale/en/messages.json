@@ -6197,7 +6197,16 @@
     "currentLanguage": {
         "message": "en"
     },
-   "search": {
+    "search": {
         "message": "Search"
+    },
+    "tabOSDSensors": {
+        "message": "OSD & Sensors"
+    },
+    "OSDSensors_OSD": {
+        "message": "OSD"
+    },
+    "OSDSensors_Sensors": {
+        "message": "Sensors"
     }
 }
