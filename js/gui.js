@@ -129,18 +129,21 @@ GUI_control.prototype.switchery = function() {
 };
 
 
-GUI_control.prototype.content_ready = function (callback) {
-    const content = $('#content').removeClass('loading');
+GUI_control.prototype.content_ready = function (callback, $container) {
+    const content = $container || $('#content');
+    content.removeClass('loading');
     
     this.switchery();
 
     // Insert a documentation button next to the tab title
-    const tabTitle = $('div#content .tab_title').first();
-    const documentationDiv = $('<div>').addClass('cf_doc_version_bt');
-    $('<a>').attr('href', 'https://github.com/iNavFlight/inav/wiki')
-        .attr('target', '_blank').attr('id', 'button-documentation')
-        .html(i18n.getMessage('documentation')).appendTo(documentationDiv);
-    documentationDiv.insertAfter(tabTitle);
+    if (!$container) {
+        const tabTitle = $('div#content .tab_title').first();
+        const documentationDiv = $('<div>').addClass('cf_doc_version_bt');
+        $('<a>').attr('href', 'https://github.com/iNavFlight/inav/wiki')
+            .attr('target', '_blank').attr('id', 'button-documentation')
+            .html(i18n.getMessage('documentation')).appendTo(documentationDiv);
+        documentationDiv.insertAfter(tabTitle);
+    }
 
     // loading tooltip
     jQuery(document).ready(function($) {
@@ -162,7 +165,7 @@ GUI_control.prototype.content_ready = function (callback) {
     });
 
     const duration = content.data('empty') ? 0 : 400;
-    $('#content .data-loading:first').fadeOut(duration, function() {
+    content.find('.data-loading:first').fadeOut(duration, function() {
         $(this).remove();
     });
     if (callback) {
@@ -274,8 +277,9 @@ GUI_control.prototype.simpleBind = function () {
     });
 };
 
-GUI_control.prototype.load = function(html, callback) {
-    const content = $('#content').addClass('loading');
+GUI_control.prototype.load = function(html, callback, $container) {
+    const content = $container || $('#content');
+    content.addClass('loading');
     $(html).appendTo(content);
     if (callback) {
         callback();
