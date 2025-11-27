@@ -41,7 +41,7 @@ var tabs = (function () {
             var newContent = $container.find("#" + subtab);
             newContent.addClass("subtab__content--current");
 
-            // $('#cache .data-loading').clone().appendTo(newContent);
+            $('#cache .data-loading').clone().appendTo($("#content"));
             
             switch (tab) {
                 case 'osd':
@@ -57,6 +57,7 @@ var tabs = (function () {
                 default:
                     console.log('Tab not found:' + tab);
             }
+
         });
     };
 
@@ -65,6 +66,7 @@ var tabs = (function () {
         
         const first = $container.find(".subtab__header_label--current").attr("for");
         const mount = $container.find('#' + first);
+        $('#cache .data-loading').clone().appendTo($("#content"));
         import('./../tabs/osd').then(() => TABS.osd.initialize(content_ready, mount));
         $container.find(".subtab__header_label").on('click', onHeaderClick);
     };

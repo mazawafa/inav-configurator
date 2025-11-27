@@ -164,8 +164,8 @@ GUI_control.prototype.content_ready = function (callback, $container) {
         });
     });
 
-    const duration = content.data('empty') ? 0 : 400;
-    content.find('.data-loading:first').fadeOut(duration, function() {
+    const duration = $("#content").data('empty') ? 0 : 400;
+    $("#content").find('.data-loading:first').fadeOut(duration, function() {
         $(this).remove();
     });
     if (callback) {
